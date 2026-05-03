@@ -1,0 +1,59 @@
+<div class="form-overlay">
+  <div class="form-container">
+    <h2>Add New Point</h2>
+
+    <div class="coordinates-display">
+      <p>
+        <strong>Coordinates:</strong> {{ coordinates[0] | number : '1.4-4' }},
+        {{ coordinates[1] | number : '1.4-4' }}
+      </p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!-- Name field -->
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input
+          #nameInput
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Enter point name"
+          class="form-input"
+          [class.error]="hasError('name')"
+          aria-label="Point name"
+          aria-required="true"
+        />
+        @if (hasError('name')) {
+          <span class="error-message" role="alert">{{ getErrorMessage('name') }}</span>
+        }
+      </div>
+
+      <!-- Category field -->
+      <div class="form-group">
+        <label for="category">Category *</label>
+        <input
+          id="category"
+          type="text"
+          formControlName="category"
+          placeholder="Enter category"
+          class="form-input"
+          [class.error]="hasError('category')"
+          aria-label="Point category"
+          aria-required="true"
+        />
+        @if (hasError('category')) {
+          <span class="error-message" role="alert">{{ getErrorMessage('category') }}</span>
+        }
+      </div>
+
+      <!-- Form actions -->
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="Object.keys(errors).length > 0">
+          Add Point
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

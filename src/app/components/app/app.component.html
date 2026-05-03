@@ -1,0 +1,38 @@
+<div class="app-container">
+  <!-- Toolbar -->
+  <app-toolbar
+    (import)="onImport($event)"
+    (export)="onExport()"
+  ></app-toolbar>
+
+  <!-- Main content area -->
+  <div class="main-content">
+    <!-- Map container -->
+    <div class="map-wrapper">
+      <app-map
+        #mapContainer
+        (mapClick)="onMapClick($event)"
+        (markerClick)="onMarkerClick($event)"
+      ></app-map>
+    </div>
+
+    <!-- Point form modal -->
+    @if (showPointForm && formCoordinates) {
+      <app-point-form
+        [coordinates]="formCoordinates"
+        (submit)="onPointFormSubmit($event)"
+        (cancel)="onPointFormCancel()"
+      ></app-point-form>
+    }
+
+    <!-- Point details panel -->
+    @if (showPointDetails && selectedPointId) {
+      <app-point-details
+        [pointId]="selectedPointId"
+        (close)="onPointDetailsClose()"
+        (update)="onPointUpdate($event)"
+        (delete)="onPointDelete($event)"
+      ></app-point-details>
+    }
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="toolbar">
+  <div class="toolbar-buttons">
+    <!-- Import button -->
+    <button
+      class="toolbar-button"
+      (click)="onImportClick()"
+      title="Import GeoJSON file"
+      aria-label="Import GeoJSON file"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+      </svg>
+      <span>Import</span>
+    </button>
+
+    <!-- Export button -->
+    <button
+      class="toolbar-button"
+      (click)="onExportClick()"
+      title="Export as GeoJSON"
+      aria-label="Export as GeoJSON"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2z" />
+        <path d="M11 3L5.5 8.5l1.42 1.41L11 5.83V15h2V5.83l4.08 4.08L18.5 8.5 12 2z" />
+      </svg>
+      <span>Export</span>
+    </button>
+
+    <!-- Add point button -->
+    <button
+      class="toolbar-button"
+      (click)="onAddPointClick()"
+      title="Add a new point"
+      aria-label="Add a new point"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+      </svg>
+      <span>Add Point</span>
+    </button>
+
+    <!-- Help button -->
+    <button
+      class="toolbar-button help-button"
+      (click)="onHelpClick()"
+      (mouseenter)="showHelp()"
+      (mouseleave)="hideHelp()"
+      title="Show help"
+      aria-label="Show help"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+      </svg>
+      <span>Help</span>
+
+      <!-- Help tooltip -->
+      @if (showHelpTooltip) {
+        <div class="tooltip">
+          <p><strong>Import:</strong> Load a GeoJSON file with points of interest</p>
+          <p><strong>Export:</strong> Download your points as a GeoJSON file</p>
+          <p><strong>Add Point:</strong> Click on the map to add a new point</p>
+          <p><strong>Edit:</strong> Click on a marker to edit its properties</p>
+          <p><strong>Delete:</strong> Click on a marker and select delete</p>
+        </div>
+      }
+    </button>
+  </div>
+
+  <!-- Hidden file input -->
+  <input
+    #fileInput
+    type="file"
+    accept=".geojson,.json"
+    (change)="onFileSelected($event)"
+    style="display: none"
+    aria-hidden="true"
+  />
+</div>
