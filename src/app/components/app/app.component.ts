@@ -45,6 +45,7 @@ import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.comp
   <app-toolbar
     (import)="onImport($event)"
     (export)="onExport()"
+    (addPoint)="onAddPointClick()"
   ></app-toolbar>
 
   <!-- Main content area -->
@@ -182,6 +183,19 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   onMapClick(coordinates: [number, number]): void {
     this.formCoordinates = coordinates;
+    this.selectedPointId = null;
+    this.showPointForm = true;
+    this.showPointDetails = false;
+  }
+
+  /**
+   * Handle add point button click from toolbar
+   * Opens form with default coordinates (center of map)
+   */
+  onAddPointClick(): void {
+    // Use center of map as default coordinates
+    const defaultCoordinates: [number, number] = [0, 0];
+    this.formCoordinates = defaultCoordinates;
     this.selectedPointId = null;
     this.showPointForm = true;
     this.showPointDetails = false;
