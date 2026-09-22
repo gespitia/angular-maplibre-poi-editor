@@ -15,7 +15,7 @@ window.addEventListener('message', event => {
   if (message?.source !== 'gespitia-shell') return;
 
   if (message.type === 'shell.init' || message.type === 'theme.changed') {
-    document.documentElement.dataset.portfolioTheme = message.theme;
+    document.documentElement.dataset['portfolioTheme'] = message.theme;
     if (message.theme === 'inherit') {
       for (const [name, value] of Object.entries(message.tokens)) {
         document.documentElement.style.setProperty(name, value);
